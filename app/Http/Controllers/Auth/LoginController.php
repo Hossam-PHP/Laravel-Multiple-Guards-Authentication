@@ -43,11 +43,23 @@ class LoginController extends Controller
         $this->middleware('guest:writer')->except('logout');
     }
 
+    /**
+     * Redirect to admin login page.
+     *
+     * @return login blade page
+     */
     public function showAdminLoginForm()
     {
         return view('auth.login', ['url' => 'admin']);
     }
 
+    /**
+     * Check credentials if right it will redirect to dashboard.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return admin blade page
+     * @return login blade page
+     */
     public function adminLogin(Request $request)
     {
         $this->validate($request, [
@@ -62,11 +74,23 @@ class LoginController extends Controller
         return back()->withInput($request->only('email', 'remember'));
     }
 
+    /**
+     * Redirect to Writer login page.
+     *
+     * @return login blade page
+     */
     public function showWriterLoginForm()
     {
         return view('auth.login', ['url' => 'writer']);
     }
 
+    /**
+     * Check credentials if right it will redirect to dashboard.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Writer blade page
+     * @return login blade page
+     */
     public function writerLogin(Request $request)
     {
         $this->validate($request, [

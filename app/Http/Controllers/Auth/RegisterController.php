@@ -60,16 +60,32 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     * Redirect to admin registration page.
+     *
+     * @return register blade page
+     */
     public function showAdminRegisterForm()
     {
         return view('auth.register', ['url' => 'admin']);
     }
 
+    /**
+     * Redirect to Writer registration page.
+     *
+     * @return register blade page
+     */
     public function showWriterRegisterForm()
     {
         return view('auth.register', ['url' => 'writer']);
     }
 
+    /**
+     * Check credentials if right it will redirect to dashboard.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return admin login blade page
+     */
     protected function createAdmin(Request $request)
     {
         $this->validator($request->all())->validate();
@@ -81,6 +97,12 @@ class RegisterController extends Controller
         return redirect()->intended('login/admin');
     }
 
+    /**
+     * Check credentials if right it will redirect to dashboard.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Writer login blade page
+     */
     protected function createWriter(Request $request)
     {
         $this->validator($request->all())->validate();

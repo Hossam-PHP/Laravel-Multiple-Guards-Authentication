@@ -51,6 +51,13 @@ class Handler extends ExceptionHandler
         return parent::render($request, $exception);
     }
 
+    /**
+     * Check authentication.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \AuthenticationException  $exception
+     * @return redirect to login page (admin - writer)
+     */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
